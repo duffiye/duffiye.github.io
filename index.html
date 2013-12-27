@@ -1,100 +1,468 @@
-package main
 
-import (
-	"crypto/rand"
-	"crypto/rsa"
-	"crypto/x509"
-	"encoding/base64"
-	"encoding/pem"
-	"errors"
-	//"flag"
-	"fmt"
-)
+<!DOCTYPE html>
+<html>
+<head>
+	<title>just for fun</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+    <!-- Styles -->
+ <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+ <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css" />
 
-var test = []byte(`sLMaBMtwqt+G/T92zsqIwz/3C5rvgClooepdj5iCvzeTQGkhhzKKPxKsaD/DDIHxeEGIRVU8Iycl
-6NCegvC1TgFoFKp8rZ6wlgEkSu67clMx2XeKpn3gK41KgFIDF09X8AKf/WCP3o5JcSvSyhYHiN3z
-rVzgpT2Pt5i42onCMpA=`)
-var decrypted string = string(test)
 
-func init() {
-	//flag.StringVar(&decrypted, "d", "", "¼Ó¹ýÃÜµÄ×Ö·û´®")
-	//flag.Parsed()
-}
 
-func main() {
-	var data []byte
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand"><strong>CLEAN CANVAS</strong></a>
+            </div>
 
-	var err error
-	fmt.Println("decrypted string is :" + decrypted)
-	if decrypted != "" {
-		data, err = base64.StdEncoding.DecodeString(decrypted)
+            <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="index.html">HOME</a></li>
+                    <li><a href="about-us.html">ABOUT US</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">PAGES <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="features.html">Features</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="portfolio-item.html">Portfolio Item</a></li>
+                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                            <li><a href="sign-in.html">Sign in</a></li>
+                            <li><a href="sign-up.html">Sign up</a></li>
+                            <li><a href="backgrounds.html">Backgrounds</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="pricing.html">PRICING</a></li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                    <li><a href="blog.html">BLOG</a></li>
+                    <li><a href="sign-up.html">Sign up</a></li>
+                    <li><a href="sign-in.html">Sign in</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-		if err != nil {
-			panic(err)
-		}
-	} else {
-		data, err = RsaEncrypt([]byte("duffiye"))
-		if err != nil {
-			panic(err)
-		}
-		fmt.Println("¼ÓÃÜºóµÄ×Ö·û´®ÊÇ:" + string(data))
-		fmt.Println("rsa encrypt base64:" + base64.StdEncoding.EncodeToString(data))
-	}
-	origData, err := RsaDecrpt(data)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("½âÃÜºóµÄ×Ö·û´®ÊÇ£º" + string(origData))
-}
+  
 
-// Ë½Ô¿
-var privateKey = []byte(`-----BEGIN RSA PRIVATE KEY-----
-MIICXQIBAAKBgQDZsfv1qscqYdy4vY+P4e3cAtmvppXQcRvrF1cB4drkv0haU24Y
-7m5qYtT52Kr539RdbKKdLAM6s20lWy7+5C0DgacdwYWd/7PeCELyEipZJL07Vro7
-Ate8Bfjya+wltGK9+XNUIHiumUKULW4KDx21+1NLAUeJ6PeW+DAkmJWF6QIDAQAB
-AoGBAJlNxenTQj6OfCl9FMR2jlMJjtMrtQT9InQEE7m3m7bLHeC+MCJOhmNVBjaM
-ZpthDORdxIZ6oCuOf6Z2+Dl35lntGFh5J7S34UP2BWzF1IyyQfySCNexGNHKT1G1
-XKQtHmtc2gWWthEg+S6ciIyw2IGrrP2Rke81vYHExPrexf0hAkEA9Izb0MiYsMCB
-/jemLJB0Lb3Y/B8xjGjQFFBQT7bmwBVjvZWZVpnMnXi9sWGdgUpxsCuAIROXjZ40
-IRZ2C9EouwJBAOPjPvV8Sgw4vaseOqlJvSq/C/pIFx6RVznDGlc8bRg7SgTPpjHG
-4G+M3mVgpCX1a/EU1mB+fhiJ2LAZ/pTtY6sCQGaW9NwIWu3DRIVGCSMm0mYh/3X9
-DAcwLSJoctiODQ1Fq9rreDE5QfpJnaJdJfsIJNtX1F+L3YceeBXtW0Ynz2MCQBI8
-9KP274Is5FkWkUFNKnuKUK4WKOuEXEO+LpR+vIhs7k6WQ8nGDd4/mujoJBr5mkrw
-DPwqA3N5TMNDQVGv8gMCQQCaKGJgWYgvo3/milFfImbp+m7/Y3vCptarldXrYQWO
-AQjxwc71ZGBFDITYvdgJM1MTqc8xQek1FXn1vfpy2c6O
------END RSA PRIVATE KEY-----`)
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+  </ol>
 
-// ¹«Ô¿
-var publicKey = []byte(`-----BEGIN PUBLIC KEY-----
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDZsfv1qscqYdy4vY+P4e3cAtmv
-ppXQcRvrF1cB4drkv0haU24Y7m5qYtT52Kr539RdbKKdLAM6s20lWy7+5C0Dgacd
-wYWd/7PeCELyEipZJL07Vro7Ate8Bfjya+wltGK9+XNUIHiumUKULW4KDx21+1NL
-AUeJ6PeW+DAkmJWF6QIDAQAB
------END PUBLIC KEY-----`)
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+         <article class="carousel-inner" id="showcasing" style="background: url('img/landscape.png') repeat-x top center;">
+            <img src="img/macbook.png" />
+            <div class="info">
+                <h2>Beautiful theme for showcasing your works.</h2>
+            </div>
+        </article>      
+        <div class="carousel-caption"></div>
+    </div>
+    <div class="item">
+           <article class="carousel-inner" id="ideas" style="background: url('img/aqua.jpg') repeat-x top center;">
+            <div class="info">
+                <h2>We love to turn ideas into beautiful things.</h2>
+            </div>
+            <img class="asset left-480 sp600 t260 z1" src="img/left.png" />
+            <img class="asset left-210 sp600 t213 z2" src="img/middle.png" />
+            <img class="asset left60 sp600 t260 z1" src="img/right.png" />
+        </article>
+        <div class="carousel-caption"></div>
+    </div>
+    <div class="item">
+           <article class="carousel-inner" id="tour" style="background: url('img/color-splash.jpg') repeat-x top center;">
+            <img class="asset left-472 sp650 t210 z3" src="img/ipad.png" />
+            <img class="asset left-365 sp600 t270 z4" src="img/iphone.png" />
+            <img class="asset left-350 sp450 t135 z2" src="img/desktop.png" />
+            <img class="asset left-185 sp550 t220 z1" src="img/macbook.png" />
+            <div class="info">
+                <h2>Fully Responsive theme</h2>
+                <a href="features.html">TOUR THE PRODUCT</a>
+            </div>
+        </article>   
+        <div class="carousel-caption"></div>
+    </div>
+     <div class="item">
+             <article class="carousel-inner" id="responsive" style="background: url('img/indigo.jpg') repeat-x top center;">
+            <img class="asset left-472 sp600 t120 z3" src="img/html5.png" />
+            <img class="asset left-190 sp500 t120 z2" src="img/css3.png" />
+            <div class="info">
+                <h2>
+                    Responsive <strong>HTML5 & CSS3</strong>
+                    Theme
+                </h2>                
+            </div>
+        </article>        
+        <div class="carousel-caption"></div>
+    </div>
+  </div>
 
-//¼ÓÃÜ
-func RsaEncrypt(origData []byte) ([]byte, error) {
-	block, _ := pem.Decode(publicKey)
-	if block == nil {
-		return nil, errors.New("public key error")
-	}
-	pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)
-	if err != nil {
-		return nil, err
-	}
-	pub := pubInterface.(*rsa.PublicKey)
-	return rsa.EncryptPKCS1v15(rand.Reader, pub, origData)
-}
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
 
-//½âÃÜ
-func RsaDecrpt(ciphertext []byte) ([]byte, error) {
-	block, _ := pem.Decode(privateKey)
-	if block == nil {
-		return nil, errors.New("private key error!")
-	}
-	priv, err := x509.ParsePKCS1PrivateKey(block.Bytes)
-	if err != nil {
-		return nil, err
-	}
-	return rsa.DecryptPKCS1v15(rand.Reader, priv, ciphertext)
-}
+
+    <div id="showcase">
+        <div class="container">
+            <div class="section_header">
+                <h3>Our Services</h3>
+            </div>            
+            <div class="row feature_wrapper">
+                <!-- Features Row -->
+                <div class="features_op1_row">
+                    <!-- Feature -->
+                    <div class="col-sm-4 feature first">
+                        <div class="img_box">
+                            <a href="services.html">
+                                <img src="img/service1.png">
+                                <span class="circle"> 
+                                    <span class="plus">&#43;</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="text">
+                            <h6>Responsive theme</h6>
+                            <p>
+                                There are many variations of passages of generators on the  embarrassing hidden in   content here making it look like.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Feature -->
+                    <div class="col-sm-4 feature">
+                        <div class="img_box">
+                            <a href="services.html">
+                                <img src="img/service2.png">
+                                <span class="circle"> 
+                                    <span class="plus">&#43;</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="text">
+                            <h6>Easy customization</h6>
+                            <p>
+                                There are many variations of passages of generators on the  embarrassing hidden in   content here making it look like.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Feature -->
+                    <div class="col-sm-4 feature last">
+                        <div class="img_box">
+                            <a href="services.html">
+                                <img src="img/service3.png">
+                                <span class="circle"> 
+                                    <span class="plus">&#43;</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="text">
+                            <h6>Made with love</h6>
+                            <p>
+                                There are many variations of passages of generators on the  embarrassing hidden in   content here making it look like.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="features">
+        <div class="container">
+            <div class="section_header">
+                <h3>Features</h3>
+            </div> 
+            <div class="row feature">
+                <div class="col-sm-6">
+                    <img src="img/showcase1.png" class="img-responsive" />
+                </div>
+                <div class="col-sm-6 info">
+                    <h3>
+                        <img src="img/features-ico1.png" />
+                        Beautiful on all devices
+                    </h3>
+                    <p>
+                        There are many variations of passages of Lorem Ipsum available, but the randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                    </p>
+                </div>
+            </div>
+            <div class="row feature">
+                <div class="col-sm-6 pic-right">
+                    <img src="img/showcase2.png" class="pull-right img-responsive" />
+                </div>
+                <div class="col-sm-6 info info-left">
+                    <h3>
+                        <img src="img/features-ico2.png" />
+                        Blog page included
+                    </h3>
+                    <p>
+                        There are many variations of passages of Lorem Ipsum available, but the randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                    </p>
+                </div>                
+            </div>
+            <div class="row feature">
+                <div class="col-sm-6">
+                    <img src="img/showcase3.png" class="img-responsive" />
+                </div>
+                <div class="col-sm-6 info">
+                    <h3>
+                        <img src="img/features-ico3.png" />
+                        Simple and clean coming soon page
+                    </h3>
+                    <p>
+                        There are many variations of passages of Lorem Ipsum available, but the randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Pricing Option -->
+    <div id="in_pricing">
+        <div class="container">
+            <div class="section_header">
+                <h3>Pricing</h3>
+            </div>
+
+            <div class="row charts_wrapp">
+                <!-- Plan Box -->
+                <div class="col-sm-4">
+                    <div class="plan">
+                        <div class="wrapper">
+                            <h3>Lite</h3>
+                            <div class="price">
+                                <span class="dollar">$</span> 
+                                <span class="qty">35</span> 
+                                <span class="month">/month</span>
+                            </div>
+                            <div class="features">
+                                <p>
+                                    <strong>10</strong>
+                                    Shared Projects
+                                </p>
+                                <p>
+                                    <strong>4</strong>
+                                    Team Members
+                                </p>
+                                <p>
+                                    <strong>10</strong>
+                                    Storage
+                                </p>
+                            </div>
+                            <a class="order" href="pricing.html">ORDER NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Plan Box -->
+                <div class="col-sm-4 pro">
+                    <div class="plan">
+                        <div class="wrapper">
+                            <img class="ribbon" src="img/badge.png">
+                            <h3>Pro</h3>
+                            <div class="price">
+                                <span class="dollar">$</span> 
+                                <span class="qty">99</span> 
+                                <span class="month">/month</span>
+                            </div>
+                            <div class="features">
+                                <p>
+                                    <strong>10</strong>
+                                    Shared Projects
+                                </p>
+                                <p>
+                                    <strong>25</strong>
+                                    Team Members
+                                </p>
+                                <p>
+                                    <strong>Unlimited</strong>
+                                     Storage
+                                </p>
+                                <p>
+                                    <strong>Plus </strong>
+                                    Phone Support
+                                </p>
+                            </div>
+                            <a class="order" href="pricing.html">ORDER NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Plan Box -->
+                <div class="col-sm-4 standar">
+                    <div class="plan">
+                        <div class="wrapper">
+                            <h3>Standard</h3>
+                            <div class="price">
+                                <span class="dollar">$</span> 
+                                <span class="qty">65</span> 
+                                <span class="month">/month</span>
+                            </div>
+                            <div class="features">
+                                <p>
+                                    <strong>10</strong>
+                                    Shared Projects
+                                </p>
+                                <p>
+                                    <strong>4</strong>
+                                    Team Members
+                                </p>
+                                <p>
+                                    <strong>10</strong>
+                                    Storage
+                                </p>
+                            </div>
+                            <a class="order" href="pricing.html">ORDER NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="start">
+                <p>Start your free, no-risk, 14 day trial! </p>
+                <a href="pricing.html">Start Now!</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- starts footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row sections">
+                <div class="col-sm-4 recent_posts">
+                    <h3 class="footer_header">
+                        Recent Posts
+                    </h3>
+                    <div class="post">
+                        <a href="blogpost.html">
+                            <img src="img/recent_post1.png" class="img-circle" />
+                        </a>
+                        <div class="date">
+                            Wed, 12 Dec
+                        </div>
+                        <a href="blogpost.html" class="title">
+                            Randomised words which don't look embarrasing hidden.
+                        </a>
+                    </div>
+                    <div class="post">
+                        <a href="blogpost.html">
+                            <img src="img/recent_post2.png" class="img-circle" />
+                        </a>
+                        <div class="date">
+                            Mon, 12 Dec
+                        </div>
+                        <a href="blogpost.html" class="title">
+                            Randomised words which don't look embarrasing hidden.
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-4 testimonials">
+                    <h3 class="footer_header">
+                        Testimonials
+                    </h3>
+                    <div class="wrapper">
+                        <div class="quote">
+                            <span>“</span>
+                            There are many variations of passages of randomised words which don't look even slightly believable. You need to be sure there isn't anything embarrassing of text.
+                            <span></span>
+                        </div>
+                        <div class="author">
+                            <img src="img/user-display.png" />
+                            <div class="name">Alejandra Galvan Castillo</div>
+                            <div class="info">
+                                Details Canvas
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 contact">
+                    <h3 class="footer_header">
+                        Contact
+                    </h3>
+                    <form action="#" method="post">
+                        <input type="text" placeholder="Your name" />
+                        <input type="text" placeholder="Your email" />
+                        <textarea rows="3" placeholder="Message"></textarea>
+                        <input type="submit" value="Send" />
+                    </form>
+                </div>
+            </div>
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row social">
+                        <div class="col-md-12">
+                            <a href="#" class="facebook">
+                                <span class="socialicons ico1"></span>
+                                <span class="socialicons_h ico1h"></span>
+                            </a>
+                            <a href="#" class="twitter">
+                                <span class="socialicons ico2"></span>
+                                <span class="socialicons_h ico2h"></span>
+                            </a>
+                            <a href="#" class="gplus">
+                                <span class="socialicons ico3"></span>
+                                <span class="socialicons_h ico3h"></span>
+                            </a>
+                            <a href="#" class="flickr">
+                                <span class="socialicons ico4"></span>
+                                <span class="socialicons_h ico4h"></span>
+                            </a>
+                            <a href="#" class="pinterest">
+                                <span class="socialicons ico5"></span>
+                                <span class="socialicons_h ico5h"></span>
+                            </a>
+                            <a href="#" class="dribble">
+                                <span class="socialicons ico6"></span>
+                                <span class="socialicons_h ico6h"></span>
+                            </a>
+                            <a href="#" class="behance">
+                                <span class="socialicons ico7"></span>
+                                <span class="socialicons_h ico7h"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            © 2013 Clean Canvas. All rights reserved. Theme by Detail Canvas.
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+   <script src="js/jquery.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script type="text/javascript">
+        $('#carousel-example-generic').carousel({
+          interval: 2000
+        });
+   </script>
+
+</body>
+</html>
