@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>test</title>
+  <title>test</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles -->
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.css" type="text/css" />
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -46,53 +46,53 @@
 
     <div class="col-sm-12" style="padding-top:70px;">
         <h1 align="center">信息录入</h1>
-        <form class="form-horizontal" role="form" action="./list.html" method="get">
+        <form class="form-horizontal" role="form" action="/save" method="post" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">开发商名称</label>
+            <label for="developerName" class="col-sm-2 control-label">开发商名称</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputEmail3" placeholder="开发商名称">
+                <input type="text" class="form-control" id="developerName" placeholder="开发商名称" name="developerName" />
               </div>
             </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
+            <label for="address" class="col-sm-2 control-label">地址</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputPassword3" placeholder="地址">
+                <input type="text" class="form-control" id="address" placeholder="地址" name="address"/>
               </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">法人姓名</label>
+            <label for="corporationName" class="col-sm-2 control-label">法人姓名</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputPassword3" placeholder="法人姓名">
+                <input type="text" class="form-control" id="corporationName" placeholder="法人姓名" name="corporationName"/>
               </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">人联系电话</label>
+            <label for="phone" class="col-sm-2 control-label">人联系电话</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputPassword3" placeholder="人联系电话">
+                <input type="text" class="form-control" id="phone" placeholder="人联系电话" name="phone"/>
               </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">法人身份证</label>
+            <label for="corporationId" class="col-sm-2 control-label">法人身份证</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputPassword3" placeholder="法人身份证">
+                <input type="text" class="form-control" id="corporationId" placeholder="法人身份证" name="corporationId"/>
               </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">营业执照</label>
+            <label for="businessLicense" class="col-sm-2 control-label">营业执照</label>
               <div class="col-sm-10">
-                <input type="file" class="form-control" id="inputPassword3" placeholder="营业执照">
+                <input type="file" class="form-control" id="businessLicense" placeholder="营业执照" name="businessLicense" />
               </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">组织机构代码证</label>
+            <label for="organCodeCer" class="col-sm-2 control-label">组织机构代码证</label>
               <div class="col-sm-10">
-                <input type="file" class="form-control" id="inputPassword3" placeholder="组织机构代码证">
+                <input type="file" class="form-control" id="organCodeCer" placeholder="组织机构代码证" name="organCodeCer"/>
               </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">勘查图纸</label>
+            <label for="paper" class="col-sm-2 control-label">勘查图纸</label>
               <div class="col-sm-10">
-                <input type="file" class="form-control" id="inputPassword3" placeholder="勘查图纸">
+                <input type="file" class="form-control" id="paper" placeholder="勘查图纸" name="paper" />
               </div>
           </div>
                 
@@ -108,27 +108,27 @@
                 <div id="collapseOne" class="panel-collapse collapse">
                   <div class="panel-body">
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">委托人姓名</label>
+                      <label for="agenteName" class="col-sm-2 control-label">委托人姓名</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputPassword3" placeholder="委托人姓名"/>
+                          <input type="text" class="form-control" id="agenteName" placeholder="委托人姓名" name="agenteName"/>
                         </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">委托书</label>
+                      <label for="agentePaper" class="col-sm-2 control-label">委托书</label>
                         <div class="col-sm-10">
-                          <input type="file" class="form-control" id="inputPassword3" placeholder="委托书">
+                          <input type="file" class="form-control" id="agentePaper" placeholder="委托书" name="agentePaper"/>
                         </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">委托人联系电话</label>
+                      <label for="agentePhone" class="col-sm-2 control-label">委托人联系电话</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputPassword3" placeholder="委托人联系电话">
+                        <input type="text" class="form-control" id="agentePhone" placeholder="委托人联系电话" name="agentePhone"/>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">委托人身份证</label>
+                      <label for="agenteCer" class="col-sm-2 control-label">委托人身份证</label>
                         <div class="col-sm-10">
-                          <input type="file" class="form-control" id="inputPassword3" placeholder="委托人身份证">
+                          <input type="file" class="form-control" id="agenteCer" placeholder="委托人身份证" name="agenteCer"/>
                         </div>
                       </div>
                     </div>
@@ -146,30 +146,30 @@
                 <div id="collapseTwo" class="panel-collapse collapse">
                   <div class="panel-body">               
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">处罚</label>
+                      <label for="punish" class="col-sm-2 control-label">处罚</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputPassword3" placeholder="处理结果">
+                        <input type="text" class="form-control" id="punish" placeholder="处理结果" name="punish"/>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">许可</label>
+                      <label for="license" class="col-sm-2 control-label">许可</label>
                         <div class="col-sm-10">
-                          <input type="file" class="form-control" id="inputPassword3" placeholder="许可证">
+                          <input type="file" class="form-control" id="license" placeholder="许可证" name="license"/>
                         </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>  
+          <div class="form-group">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">开发商信息录入</button>
           </div>
-        </div>    
-      <div class="form-group">
-        <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary btn-lg btn-block">开发商信息录入</button>
-        </div>
       </div>
-    </form>
+       </form>
   </div>
+        
 
    
     <!-- starts footer -->
@@ -209,8 +209,8 @@
     </footer>
 
     <!-- Scripts -->
-   <script src="js/jquery.js"></script>
-   <script src="js/bootstrap.min.js"></script>
+   <script src="/static/js/jquery.js"></script>
+   <script src="/static/js/bootstrap.min.js"></script>
    <script type="text/javascript">
         
    </script>
